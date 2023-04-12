@@ -217,7 +217,8 @@ def _get_category_problems(category):
                    'title': p['stat']['question__title'],
                    'slug': p['stat']['question__title_slug'],
                    'paid_only': p['paid_only'],
-                   'ac_rate': p['stat']['total_acs'] / p['stat']['total_submitted'],
+                   'ac_rate': p['stat']['total_acs'] / p['stat']['total_submitted'] if \
+                                p['stat']['total_submitted'] > 0 else 0,
                    'level': _level_to_name(p['difficulty']['level']),
                    'favor': p['is_favor'],
                    'category': content['category_slug'],
