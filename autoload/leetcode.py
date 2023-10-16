@@ -541,7 +541,7 @@ def get_submission(sid):
     # the second key "runtime" is the runtime in milliseconds
     # we need to search from the position after the first "runtime" key
     prev_runtime = re.search("runtime: '([^']*)'", s)
-    if not prev_runtime:
+    if not prev_runtime or not _group1(prev_runtime, 'N/A').split()[0].isdigit():
         my_runtime = 0
     else:
         my_runtime = int(_group1(re.search("runtime: '([^']*)'", s[prev_runtime.end():]), 0))
